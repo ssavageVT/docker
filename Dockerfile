@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y git curl && rm -rf /var/lib/apt/lists/*
 ARG user=docker-user
 ARG group=docker
 ARG uid=1003
-ARG gid=1003
+ARG gid=0
 ARG http_port=8080
 ARG agent_port=50000
 

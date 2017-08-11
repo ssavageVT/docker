@@ -18,12 +18,12 @@ ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
+#add deploy scripts
+ADD aws-deploy-scripts /var/jenkins_home/aws-deploy-scripts
+RUN chown -R ${user} /var/jenkins_home/aws-deploy-scripts
 # Jenkins home directory is a volume, so configuration and build history 
 # can be persisted and survive image upgrades
 VOLUME /var/jenkins_home
-
-#add deploy scripts
-ADD aws-deploy-scripts /var/jenkins_home/aws-deploy-scripts
 
 # `/usr/share/jenkins/ref/` contains all reference configuration we want 
 # to set on a fresh new installation. Use it to bundle additional plugins 
@@ -74,3 +74,6 @@ ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+
+RUN mkdir /usr/aws-deploy-scripts/
+COPY ./aws-deploy-scripts /usr/aws-deploy-scripts/

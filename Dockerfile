@@ -18,9 +18,6 @@ ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
-#add deploy scripts
-ADD aws-deploy-scripts /var/jenkins_home/aws-deploy-scripts
-RUN chown -R ${user} /var/jenkins_home/aws-deploy-scripts
 # Jenkins home directory is a volume, so configuration and build history 
 # can be persisted and survive image upgrades
 VOLUME /var/jenkins_home

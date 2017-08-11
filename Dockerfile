@@ -22,6 +22,9 @@ RUN groupadd -g ${gid} ${group} \
 # can be persisted and survive image upgrades
 VOLUME /var/jenkins_home
 
+#add deploy scripts
+ADD aws-deploy-scripts /var/jenkins_home/aws-deploy-scripts
+
 # `/usr/share/jenkins/ref/` contains all reference configuration we want 
 # to set on a fresh new installation. Use it to bundle additional plugins 
 # or config file with your custom jenkins Docker image.

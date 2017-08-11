@@ -2,10 +2,8 @@ FROM openjdk:8-jdk
 
 RUN apt-get update && apt-get install -y git curl python3-pip python3.5-dev python3-boto3 && rm -rf /var/lib/apt/lists/*
 
-#RUN curl -O https://bootstrap.pypa.io/get-pip.py
-#RUN python3 get-pip.py
-RUN python3-pip install awscli
-RUN python3-pip install boto3
+RUN curl -O https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py  && pip install awscli && pip install boto3
 
 ARG user=docker-user
 ARG group=docker

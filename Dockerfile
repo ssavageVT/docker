@@ -72,5 +72,5 @@ ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 
-RUN mkdir /usr/aws-deploy-scripts/
-COPY ./aws-deploy-scripts /usr/aws-deploy-scripts/
+RUN mkdir /usr/share/jenkins/ref/aws-deploy-scripts/
+COPY ./aws-deploy-scripts /usr/share/jenkins/ref/aws-deploy-scripts/

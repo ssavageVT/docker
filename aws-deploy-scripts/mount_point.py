@@ -6,6 +6,12 @@ class MountPoint:
         self.readOnly = readOnly
 
 
+class LogConfiguration:
+    def __init__(self, log_driver):
+        self.logDriver = log_driver
+        self.options ={}
+
+
 class Volume:
     def __init__(self, name):
         self.name = name

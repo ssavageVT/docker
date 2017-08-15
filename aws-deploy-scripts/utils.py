@@ -12,7 +12,7 @@ def parse_port_mappings(port_mappings=str):
             if len(ports) == 3:
                 port_map = PortMapping(int(ports[0]), int(ports[1]),ports[2])
                 port_maps.append(port_map)
-            elif len(ports) == 3:
+            elif len(ports) == 2:
                 port_map = PortMapping(int(ports[0]), int(ports[1]),"tcp")
                 port_maps.append(port_map)
             elif len(ports) == 1:

@@ -20,7 +20,7 @@ def getec2client(awsaccessid, awssecretkey, region):
     return ec2_client
 
 
-def get_elb_client(awsaccessid, awssecretkey, region):
+def getelbclient(awsaccessid, awssecretkey, region):
     elb_client = boto3.client(
         'elb',
         aws_access_key_id=awsaccessid,
@@ -38,3 +38,4 @@ def getec2resoure(awsaccessid, awssecretkey, region):
         region_name=region
 
     )
+    return ec2_resource

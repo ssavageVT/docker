@@ -29,6 +29,8 @@ parser.add_argument('--ports')
 parser.add_argument('--memory')
 parser.add_argument('--cpu')
 parser.add_argument('--volumes')
+parser.add_argument('--logdriver')
+parser.add_argument('--loggroup')
 
 my_args = parser.parse_args()
 
@@ -42,6 +44,8 @@ c.add_memory(int(my_args.memory))
 c.add_cpu(int(my_args.cpu))
 c.portMappings = utils.parse_port_mappings(my_args.ports)
 c.environment = utils.parse_env_variables(my_args.env)
+c.add_log_configuration(my_args.logdriver, my_args.region, my_args.loggroup)
+c.add_docker_label()
 vols ={}
 vols = utils.parse_mountings(my_args.volumes,my_args.taskname)
 c.mountPoints = vols.get("mounts")

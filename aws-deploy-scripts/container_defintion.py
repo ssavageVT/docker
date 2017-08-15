@@ -1,6 +1,6 @@
 import json
 from port_mapping import PortMapping
-from mount_point import MountPoint,Volume
+from mount_point import MountPoint,Volume,LogConfiguration
 from container_defnition_environment import Environment
 
 class ContainerDefinition:
@@ -14,6 +14,8 @@ class ContainerDefinition:
         self.memory = 0
         self.cpu = 0
         self.essential = True
+        self.dockerLabels = {}
+        self.logConfiguration ={}
 
     def add_port_mappings(self, container_port, host_port, protocol):
         port_mapping = PortMapping (container_port, host_port, protocol)
@@ -32,6 +34,16 @@ class ContainerDefinition:
     def add_environment(self, name, value):
         env = Environment(name, value)
         self.environment.append(env)
+
+    def add_docker_label(self):
+        self.dockerLabels['api-id'] = self.name
+
+    def add_log_configuration(self, log_config, region, group):
+        log_info = LogConfiguration(log_config)
+        log_info.options['awslogs-region'] = region
+        log_info.options['awslogs-group'] = group
+        log_info.options['awslogs-stream-prefix'] = self.name
+        self.logConfiguration = log_info
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

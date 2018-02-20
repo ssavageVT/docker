@@ -6,10 +6,10 @@ RUN easy_install3 pip
 RUN pip3 install awscli
 RUN pip3 install boto3
 
-ARG user=docker-user
+ARG user=vagrant
 ARG group=docker
-ARG uid=1003
-ARG gid=990
+ARG uid=1000
+ARG gid=993
 ARG http_port=8080
 ARG agent_port=50000
 
